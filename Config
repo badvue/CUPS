@@ -1,13 +1,14 @@
 LogLevel warn
 PageLogFormat
-MaxLogSize 1m
+MaxLogSize 0
 ErrorPolicy retry-job
 Listen 0.0.0.0:631
 Listen /run/cups/cups.sock
-Browsing On
+Browsing Yes
 BrowseLocalProtocols dnssd
 DefaultAuthType Basic
 WebInterface Yes
+IdleExitTimeout 60
 <Location />
   Order allow,deny
   Allow all
@@ -50,7 +51,7 @@ WebInterface Yes
     Require user @SYSTEM
     Order deny,allow
   </Limit>
-  <Limit CUPS-Authenticate-Job>
+  <Limit Cancel-Job CUPS-Authenticate-Job>
     Require user @OWNER @SYSTEM
     Order deny,allow
   </Limit>
